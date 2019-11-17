@@ -1,0 +1,142 @@
+        <!-- portfolio section start -->
+        <section id="portfolio" class="portfolio-section pt-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mb-40">
+                        <div class="section-title">
+                            <span class="sm-title">Works</span>
+                            <h2>
+                                Cool Stuffs
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 d-flex align-items-center justify-content-lg-end justify-content-center">
+                        <div class="portfolio-filter">
+                            <div class="portfolio-menu button-group">
+                                <button data-filter="*">All</button>
+                                <button data-filter=".web-design">Web Design</button>
+                                <button data-filter=".wordpress">WordPress</button>
+                                <button data-filter=".web-development">Web Development</button>
+                                <button data-filter=".app">Apps</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row portfolio-active">
+                    <div class="col-xl-8 col-lg-4 col-md-6 grid-item wordpress web-design">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/02.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item web-development">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/01-1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item web-design app">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/04.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item web-development wordpress">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/05.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item web-development wordpress">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/06.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item wordpress app">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/06.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-4 grid-item app web-design">
+                        <div class="portfolio-item mb-30">
+                            <img src="img/portfolio/04.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- portfolio section end -->
+
+
+//css 
+
+
+/* portfolio */
+
+.portfolio-item img {
+	width: 100%;
+}
+
+.button-group {
+	border-bottom: 2px solid #f0ecff;
+	padding-bottom: 15px;
+}
+
+.portfolio-menu button {
+	border: none;
+	background: no-repeat;
+	font-size: 14px;
+	font-weight: 600;
+	color: #000A2D;
+	margin: 0 6px;
+	outline: 0;
+	cursor: pointer;
+	transition: .3s;
+	position: relative;
+}
+
+.portfolio-menu button:hover,
+.portfolio-menu button.active {
+	color: #ff3d4f;
+}
+
+.portfolio-menu button::before {
+	position: absolute;
+	height: 2px;
+	content: "";
+	width: 0%;
+	top: 36px;
+	background: #ff3d4f;
+	left: 0;
+}
+
+.portfolio-menu button.active::before {
+	width: 100%;
+}
+
+
+//Jquery Activation
+
+
+	// isotop
+
+	var $grid = $('.portfolio-active').isotope({
+		itemSelector: '.grid-item',
+		percentPosition: true,
+		masonry: {
+			// use outer width of grid-sizer for columnWidth
+			columnWidth: 1
+		}
+	})
+	
+
+	// filter items on button click
+	$('.portfolio-menu').on('click', 'button', function () {
+		var filterValue = $(this).attr('data-filter');
+		$grid.isotope({ filter: filterValue });
+	});
+
+	//for menu active class
+	$('.portfolio-menu button').on('click', function (event) {
+		$(this).siblings('.active').removeClass('active');
+		$(this).addClass('active');
+		event.preventDefault();
+	});
+
